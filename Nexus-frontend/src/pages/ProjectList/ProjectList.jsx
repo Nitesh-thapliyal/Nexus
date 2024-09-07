@@ -4,8 +4,20 @@ import React from "react";
 import { MixerHorizontalIcon } from "@radix-ui/react-icons";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-
 import { Label } from "@/components/ui/label";
+
+const tags = [
+    "all", 
+    "react", 
+    "nextjs", 
+    "springboot", 
+    "mysql", 
+    "mongodb", 
+    "pgsql" , 
+    "angularjs", 
+    "python", 
+    "django"
+];
 
 const ProjectList = () => {
 
@@ -35,7 +47,7 @@ const ProjectList = () => {
                                 </h1>
 
                                 <div className="pt-5">
-                                    <RadioGroup defaultValue="all" onValueChange={(value) => handleFilterChange("category", value)}>
+                                    <RadioGroup className="space-y-3 pt-5" defaultValue="all" onValueChange={(value) => handleFilterChange("category", value)}>
                                         <div className="flex items-center gap-2">
                                             <RadioGroupItem  value="all" id="r1"/>
                                             <Label htmlFor="r1">all</Label>
@@ -62,23 +74,12 @@ const ProjectList = () => {
                                 </h1>
 
                                 <div className="pt-5">
-                                    <RadioGroup defaultValue="all" onValueChange={(value) => handleFilterChange("category", value)}>
-                                        <div className="flex items-center gap-2">
-                                            <RadioGroupItem  value="all" id="r1"/>
-                                            <Label htmlFor="r1">all</Label>
-                                        </div>
-                                        <div className="flex items-center gap-2">
-                                            <RadioGroupItem  value="fullstack" id="r2"/>
-                                            <Label htmlFor="r2">fullstack</Label>
-                                        </div>
-                                        <div className="flex items-center gap-2">
-                                            <RadioGroupItem  value="backend" id="r3"/>
-                                            <Label htmlFor="r3">backend</Label>
-                                        </div>
-                                        <div className="flex items-center gap-2">
-                                            <RadioGroupItem  value="frontened" id="r4"/>
-                                            <Label htmlFor="r4">frontend</Label>
-                                        </div>
+                                    <RadioGroup className="space-y-3 pt-5" defaultValue="all" onValueChange={(value) => handleFilterChange("tag", value)}>
+                                        { tags.map((item) => <div key={item} className="flex items-center gap-2">
+                                            <RadioGroupItem  value={item} id={`r1-${item}`}/>
+                                            <Label htmlFor={`r1-${item}`}>{item}</Label>
+                                        </div>)}
+                                        
                                     </RadioGroup>
                                 </div>
                             </div>
