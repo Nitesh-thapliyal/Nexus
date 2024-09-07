@@ -1,11 +1,12 @@
 import {Card, CardContent } from "@/components/ui/card";
 import {Button} from "@/components/ui/button";
-import React from "react";
+import React, { useState } from "react";
 import { MagnifyingGlassIcon, MixerHorizontalIcon } from "@radix-ui/react-icons";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
+import ProjectCard from "../Project/ProjectCard";
 
 const tags = [
     "all", 
@@ -22,12 +23,14 @@ const tags = [
 
 const ProjectList = () => {
 
+    const [keyword, setKeyword] = useState("");
+
     const handleFilterChange = (section,value) => {
         console.log("value", value, section)
     }
 
-    const handleSearchChange = () => {
-
+    const handleSearchChange = (e) => {
+        setKeyword(e.target.value)
     }
 
     return(
@@ -107,6 +110,15 @@ const ProjectList = () => {
                         <MagnifyingGlassIcon className="absolute top-3 left-4"/>
                         
                     </div>
+
+                </div>
+
+                <div className="space-y-5 min-h[74vh]">
+
+                    {
+                        keyword?[1,1,1].map((item) => <ProjectCard key={item}/>):
+                        [1,1,1,1,1].map((item) => <ProjectCard key={item}/>)
+                    }
 
                 </div>
 
