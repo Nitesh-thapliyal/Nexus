@@ -117,7 +117,7 @@ const ProjectList = () => {
 
                     {
                         keyword?[1,1,1].map((item) => <ProjectCard key={item}/>):
-                        [1,1,1,1,1].map((item) => <ProjectCard key={item}/>)
+                        [1,1,1,1].map((item) => <ProjectCard key={item}/>)
                     }
 
                 </div>
