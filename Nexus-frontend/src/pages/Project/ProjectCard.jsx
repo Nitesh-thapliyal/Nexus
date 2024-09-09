@@ -1,3 +1,4 @@
+import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
@@ -31,6 +32,9 @@ function ProjectCard() {
                     </div>
                 </div>
                 <p className='text-gray-500 text-sm'>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+            </div>
+            <div className='flex flex-wrap gap-2 items-center'>
+                {[1,1,1,1].map((item) => <Badge key={item} variant="outline">frontend</Badge>)}
             </div>
         </div>
     </Card>
