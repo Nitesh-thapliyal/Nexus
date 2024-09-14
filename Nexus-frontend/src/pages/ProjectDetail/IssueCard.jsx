@@ -1,8 +1,7 @@
-import { AvatarFallback } from '@/components/ui/avatar'
+import { Avatar, AvatarFallback } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
-import { Avatar } from '@radix-ui/react-avatar'
 import { DotsVerticalIcon, PersonIcon } from '@radix-ui/react-icons'
 import React from 'react'
 import UserList from './UserList'
@@ -35,7 +34,7 @@ const IssueCard = () => {
           <p>FBP - {1}</p>
           <DropdownMenu className="w-[30rem] border border-red-400">
             <DropdownMenuTrigger>
-              <Button size="icon" className="rounded-full" variant="outline">
+              <Button size="icon" className="text-gray-400 hover:text-black rounded-full" variant="outline">
                 <Avatar>
                   <AvatarFallback>
                     <PersonIcon/>
