@@ -1,8 +1,11 @@
+import { AvatarFallback } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
-import { Card, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
-import { DotsVerticalIcon } from '@radix-ui/react-icons'
+import { Avatar } from '@radix-ui/react-avatar'
+import { DotsVerticalIcon, PersonIcon } from '@radix-ui/react-icons'
 import React from 'react'
+import UserList from './UserList'
 
 const IssueCard = () => {
   return (
@@ -27,6 +30,26 @@ const IssueCard = () => {
           </DropdownMenu>
         </div>
       </CardHeader>
+      <CardContent className="py-0">
+        <div className='flex items-center justify-between'>
+          <p>FBP - {1}</p>
+          <DropdownMenu className="w-[30rem] border border-red-400">
+            <DropdownMenuTrigger>
+              <Button size="icon" className="rounded-full" variant="outline">
+                <Avatar>
+                  <AvatarFallback>
+                    <PersonIcon/>
+                  </AvatarFallback>
+                </Avatar>
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent>
+              <UserList/>
+            </DropdownMenuContent>
+
+          </DropdownMenu>
+        </div>
+      </CardContent>
     </Card>
   )
 }
