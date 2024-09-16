@@ -14,7 +14,7 @@ const CommentCard = () => {
                 <p>How much work is pending?</p>
             </div>
         </div>
-        <Button className="rounded-full" variant="ghost">
+        <Button className="rounded-full" variant="ghost" size="icon">
             <TrashIcon/>
         </Button>
 
