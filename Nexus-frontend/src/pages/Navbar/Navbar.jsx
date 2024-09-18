@@ -21,7 +21,7 @@ const Navbar = () => {
                     <CreateProjectForm/>
                 </DialogContent>
             </Dialog>
-            <Button>Upgrade Plan</Button>
+            <Button onClick={() => navigate("/upgrade_plan")}>Upgrade Plan</Button>
         </div>
         <div className='flex gap-3 items-center'>
             <DropdownMenu>
