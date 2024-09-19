@@ -10,7 +10,7 @@ import Subscription from "./pages/Subscription/Subscription";
 function App() {
   return (
     <>
-      { false ? <div>
+      { true ? <div>
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
