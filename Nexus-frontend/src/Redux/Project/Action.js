@@ -1,5 +1,5 @@
 import api from "@/config/api";
-import { CREATE_PROJECTS_REQUESTS, CREATE_PROJECTS_SUCCESS, DELETE_PROJECTS_REQUESTS, DELETE_PROJECTS_SUCCESS, FETCH_PROJECTS_BY_ID_REQUESTS, FETCH_PROJECTS_BY_ID_SUCCESS, SEARCH_PROJECTS_REQUESTS, SEARCH_PROJECTS_SUCCESS } from "./ActionTypes";
+import { ACCEPT_INVITATION_REQUESTS, ACCEPT_INVITATION_SUCCESS, CREATE_PROJECTS_REQUESTS, CREATE_PROJECTS_SUCCESS, DELETE_PROJECTS_REQUESTS, DELETE_PROJECTS_SUCCESS, FETCH_PROJECTS_BY_ID_REQUESTS, FETCH_PROJECTS_BY_ID_SUCCESS, INVITE_TO_PROJECTS_REQUESTS, INVITE_TO_PROJECTS_SUCCESS, SEARCH_PROJECTS_REQUESTS, SEARCH_PROJECTS_SUCCESS } from "./ActionTypes";
 
 
 export const fetchProjects = ({category, tag}) => async (dispatch) => {
@@ -47,13 +47,41 @@ export const fetchProjectById = (id) => async (dispatch) => {
 }
 
 
-export const deleteProjectById = (projectId) => async (dispatch) => {
+export const deleteProjectById = ({projectId}) => async (dispatch) => {
     dispatch({type: DELETE_PROJECTS_REQUESTS})
     try {
-        const {data} = await api.delete("/api/projects/"+projectId)
+        const {data} = await api.delete("/api/projects"+projectId)
         console.log("delete projects", data);
         dispatch({type: DELETE_PROJECTS_SUCCESS, projectId})
     } catch (error) {
-        console.log(error);
+        console.log("error" , error);
+    }
+}
+
+
+export const inviteToProject = ({email,projectId}) => async (dispatch) => {
+    dispatch({type: INVITE_TO_PROJECTS_REQUESTS})
+    try {
+        const {data} = await api.delete("/api/projects",{email, projectId})
+        console.log("invite projects", data);
+        dispatch({type: INVITE_TO_PROJECTS_SUCCESS, payload:data})
+    } catch (error) {
+        console.log("error", error);
+    }
+}
+
+export const acceptInvitation = ({invitationToken,navigate}) => async (dispatch) => {
+    dispatch({type: ACCEPT_INVITATION_REQUESTS})
+    try {
+        const {data} = await api.get("/api/projects/accept_invitation",{
+            params:{
+                token: invitationToken
+            }
+        })
+        navigate("/project" + data.projectId)
+        console.log("accapt invitation", data);
+        dispatch({type: ACCEPT_INVITATION_SUCCESS, payload:data})
+    } catch (error) {
+        console.log("error", error);
     }
 }
