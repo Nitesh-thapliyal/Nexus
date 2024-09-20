@@ -62,7 +62,7 @@ export const deleteProjectById = ({projectId}) => async (dispatch) => {
 export const inviteToProject = ({email,projectId}) => async (dispatch) => {
     dispatch({type: INVITE_TO_PROJECTS_REQUESTS})
     try {
-        const {data} = await api.delete("/api/projects",{email, projectId})
+        const {data} = await api.post("/api/projects",{email, projectId})
         console.log("invite projects", data);
         dispatch({type: INVITE_TO_PROJECTS_SUCCESS, payload:data})
     } catch (error) {
