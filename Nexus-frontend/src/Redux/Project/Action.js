@@ -1,5 +1,5 @@
 import api from "@/config/api";
-import { ACCEPT_INVITATION_REQUESTS, ACCEPT_INVITATION_SUCCESS, CREATE_PROJECTS_REQUESTS, CREATE_PROJECTS_SUCCESS, DELETE_PROJECTS_REQUESTS, DELETE_PROJECTS_SUCCESS, FETCH_PROJECTS_BY_ID_REQUESTS, FETCH_PROJECTS_BY_ID_SUCCESS, INVITE_TO_PROJECTS_REQUESTS, INVITE_TO_PROJECTS_SUCCESS, SEARCH_PROJECTS_REQUESTS, SEARCH_PROJECTS_SUCCESS } from "./ActionTypes";
+import { ACCEPT_INVITATION_REQUESTS, ACCEPT_INVITATION_SUCCESS, CREATE_PROJECTS_REQUESTS, CREATE_PROJECTS_SUCCESS, DELETE_PROJECTS_REQUESTS, DELETE_PROJECTS_SUCCESS, DELETE_PROJECT_REQUEST, DELETE_PROJECT_REQUESTS, DELETE_PROJECT_SUCCESS, FETCH_PROJECTS_BY_ID_REQUESTS, FETCH_PROJECTS_BY_ID_SUCCESS, INVITE_TO_PROJECTS_REQUESTS, INVITE_TO_PROJECTS_SUCCESS, INVITE_TO_PROJECT_REQUEST, INVITE_TO_PROJECT_SUCCESS, SEARCH_PROJECTS_REQUESTS, SEARCH_PROJECTS_SUCCESS } from "./ActionTypes";
 
 
 export const fetchProjects = ({category, tag}) => async (dispatch) => {
@@ -48,11 +48,11 @@ export const fetchProjectById = (id) => async (dispatch) => {
 
 
 export const deleteProjectById = ({projectId}) => async (dispatch) => {
-    dispatch({type: DELETE_PROJECTS_REQUESTS})
+    dispatch({type: DELETE_PROJECT_REQUEST})
     try {
         const {data} = await api.delete("/api/projects"+projectId)
         console.log("delete projects", data);
-        dispatch({type: DELETE_PROJECTS_SUCCESS, projectId})
+        dispatch({type: DELETE_PROJECT_SUCCESS, projectId})
     } catch (error) {
         console.log("error" , error);
     }
@@ -60,11 +60,11 @@ export const deleteProjectById = ({projectId}) => async (dispatch) => {
 
 
 export const inviteToProject = ({email,projectId}) => async (dispatch) => {
-    dispatch({type: INVITE_TO_PROJECTS_REQUESTS})
+    dispatch({type: INVITE_TO_PROJECT_REQUEST})
     try {
         const {data} = await api.post("/api/projects",{email, projectId})
         console.log("invite projects", data);
-        dispatch({type: INVITE_TO_PROJECTS_SUCCESS, payload:data})
+        dispatch({type: INVITE_TO_PROJECT_SUCCESS, payload:data})
     } catch (error) {
         console.log("error", error);
     }
