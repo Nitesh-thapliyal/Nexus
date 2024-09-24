@@ -82,6 +82,6 @@ Nexus is designed to simplify project management and team collaboration. This pl
    ```
 3. Install dependencies:
    ```bash
-   mvm install 
+   mvn install 
 
 
